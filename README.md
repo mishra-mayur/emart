@@ -9,6 +9,7 @@ Clone the project in your local machine and run it as a maven project.
 ### Prerequisites
 
 You need an IDE(preferably IntelliJ), database MySql, setup the database using the file scripts.sql that is present in the project.
+After you are done with database setup use product_data.sql file to populate product data.
 Enable Lombok extension in your IDE to use its annotations.
 
 ```
@@ -151,7 +152,7 @@ Or use the command :-
 
 ## Versioning
 
-0.0.1-SNAPSHOT
+1.0.0-SNAPSHOT
 
 ## Authors
 
