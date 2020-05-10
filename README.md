@@ -19,13 +19,13 @@ JDK setup done, with database connected and running on 3306 port
 
 IDE is required and MySQL server
 
-###All the API endpoints: 
+### All the API endpoints: 
 
 There are two type of resources in eMart ;-
 * Public endpoints like product search and user signUp 
 * Private endpoints like booking, card functionality that requires authorization.
 
-####Public Endpoints 
+#### Public Endpoints 
 
 ```
  SignUp 
@@ -74,7 +74,7 @@ Request Body :- {
 
 ```
 
-####Private Endpoints
+#### Private Endpoints
 For all these endpoints add an extra header
 ```
 [{"key":"Authorization","value":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXl1ci5taXNocmFAY292aWFtLmNvbSIsImV4cCI6MTU4OTA5ODc3MSwiaWF0IjoxNTg5MDk1MTcxfQ.pNqADt3jznQM2ub8SQ2hD0atokI4nDAGlS2cuFUSkZ0","description":"","type":"text","enabled":true}]
