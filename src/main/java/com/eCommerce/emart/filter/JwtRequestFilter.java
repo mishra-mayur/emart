@@ -1,6 +1,6 @@
 package com.eCommerce.emart.filter;
 
-import com.eCommerce.emart.service.UserService;
+import com.eCommerce.emart.serviceImpl.UserService;
 import com.eCommerce.emart.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,22 +22,29 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-  @Autowired
+  private static final String AUTHORIZATION = "Authorization";
+  private static final String BEARER_ = "Bearer ";
+
   private UserService userDetailsService;
 
-  @Autowired
   private JwtUtil jwtUtil;
+
+  @Autowired
+  public JwtRequestFilter(UserService userDetailsService, JwtUtil jwtUtil) {
+    this.userDetailsService = userDetailsService;
+    this.jwtUtil = jwtUtil;
+  }
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain chain) throws ServletException, IOException {
 
-    final String authorizationHeader = request.getHeader("Authorization");
+    final String authorizationHeader = request.getHeader(AUTHORIZATION);
 
     String username = null;
     String jwt = null;
 
-    if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+    if (authorizationHeader != null && authorizationHeader.startsWith(BEARER_)) {
       jwt = authorizationHeader.substring(7);
       username = jwtUtil.extractUsername(jwt);
     }

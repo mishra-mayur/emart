@@ -1,5 +1,6 @@
 package com.eCommerce.emart.model.entity;
 
+import com.eCommerce.emart.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,19 +28,23 @@ import java.io.Serializable;
 @Builder
 @ToString
 @Entity
-@Table(name = User.USERS)
-public class User implements Serializable {
+@Table(name = Product.PRODUCTS)
+public class Product implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  public static final String USERS = "users";
+  public static final String PRODUCTS = "products";
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
 
-  private String userEmail;
+  @Column(unique = true)
+  private String name;
 
-  private String password;
+  private String description;
 
-  private boolean active;
+  private int stock;
+
+  @Enumerated(EnumType.STRING)
+  private Category category;
 }

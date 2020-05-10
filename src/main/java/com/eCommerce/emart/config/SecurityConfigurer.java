@@ -1,7 +1,7 @@
 package com.eCommerce.emart.config;
 
 import com.eCommerce.emart.filter.JwtRequestFilter;
-import com.eCommerce.emart.service.UserService;
+import com.eCommerce.emart.serviceImpl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
+
+  private static final String PUBLIC_URLS = "/public/**";
 
   @Autowired
   private UserService userService;
@@ -44,7 +46,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.csrf().disable().authorizeRequests().antMatchers("/authenticate").permitAll().
+    httpSecurity.csrf().disable().authorizeRequests().antMatchers(PUBLIC_URLS).permitAll().
         anyRequest().authenticated().and().
         exceptionHandling().and().sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

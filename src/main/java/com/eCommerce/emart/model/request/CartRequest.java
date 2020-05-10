@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Created by Mayur on 09/05/20.
+ * Created by Mayur on 10/05/20.
  */
 @Getter
 @Setter
@@ -16,7 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class AuthenticationRequest {
+public class CartRequest {
   private String userEmail;
-  private String password;
+  private int productId;
 }

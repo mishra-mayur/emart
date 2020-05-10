@@ -24,11 +24,11 @@ import java.io.Serializable;
 @Builder
 @ToString
 @Entity
-@Table(name = User.USERS)
-public class User implements Serializable {
+@Table(name = UserOtp.USER_OTP)
+public class UserOtp implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  public static final String USERS = "users";
+  public static final String USER_OTP = "user_otp";
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +36,5 @@ public class User implements Serializable {
 
   private String userEmail;
 
-  private String password;
-
-  private boolean active;
+  private String otp;
 }

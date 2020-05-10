@@ -24,11 +24,11 @@ import java.io.Serializable;
 @Builder
 @ToString
 @Entity
-@Table(name = User.USERS)
-public class User implements Serializable {
+@Table(name = UserCart.USER_CART)
+public class UserCart implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  public static final String USERS = "users";
+  public static final String USER_CART = "user_cart";
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +36,7 @@ public class User implements Serializable {
 
   private String userEmail;
 
-  private String password;
+  private int productId;
 
-  private boolean active;
+  private int quantity;
 }

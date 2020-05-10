@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Map;
+
 /**
- * Created by Mayur on 09/05/20.
+ * Created by Mayur on 10/05/20.
  */
 @Getter
 @Setter
@@ -16,7 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class AuthenticationRequest {
+public class OrderRequest {
   private String userEmail;
-  private String password;
+  private Map<String, Integer> productQuantityMap;
 }

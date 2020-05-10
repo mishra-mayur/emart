@@ -1,5 +1,7 @@
 package com.eCommerce.emart.model.entity;
 
+import com.eCommerce.emart.enums.OrderStatus;
+import com.eCommerce.emart.util.HashMapConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,12 +9,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * Created by Mayur on 09/05/20.
@@ -24,11 +30,11 @@ import java.io.Serializable;
 @Builder
 @ToString
 @Entity
-@Table(name = User.USERS)
-public class User implements Serializable {
+@Table(name = Order.ORDERS)
+public class Order implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  public static final String USERS = "users";
+  public static final String ORDERS = "orders";
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +42,9 @@ public class User implements Serializable {
 
   private String userEmail;
 
-  private String password;
+  @Convert(converter = HashMapConverter.class)
+  private Map<String, Integer> productQuantityMap;
 
-  private boolean active;
+  @Enumerated(EnumType.STRING)
+  private OrderStatus orderStatus;
 }
