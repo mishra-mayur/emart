@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface UserCartRepository extends JpaRepository<UserCart, Integer> {
   List<UserCart> findByUserEmail(String userEmail);
-  boolean deleteByUserEmailAndAndProductId(String userEmail, int productId);
+  void deleteByUserEmailAndAndProductId(String userEmail, int productId);
 }

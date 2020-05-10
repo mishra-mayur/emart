@@ -63,21 +63,22 @@ public class UserCartServiceImpl implements UserCartService {
     try {
       userCarts = userCartRepository.findByUserEmail(userEmail);
     } catch (Exception e) {
-      log.error("Unable to fetch cart details for user with email : {}",userEmail);
+      log.error("Unable to fetch cart details for user with email : {}", userEmail);
     }
     AtomicBoolean updated = new AtomicBoolean(false);
     userCarts.forEach(userCart -> {
-      if (userCart.getProductId()==productId) {
-        userCart.setQuantity(userCart.getQuantity()+1);
+      if (userCart.getProductId() == productId) {
+        userCart.setQuantity(userCart.getQuantity() + 1);
         updated.set(true);
       }
     });
     if (!updated.get()) {
       try {
-        userCartRepository.save(UserCart.builder().productId(productId).quantity(1).userEmail(userEmail).build());
+        userCartRepository
+            .save(UserCart.builder().productId(productId).quantity(1).userEmail(userEmail).build());
         return true;
       } catch (Exception e) {
-        log.error("Error in adding to card. Product Id : {}",productId);
+        log.error("Error in adding to card. Product Id : {}", productId);
       }
     }
     return false;
@@ -86,6 +87,7 @@ public class UserCartServiceImpl implements UserCartService {
   @Override
   @Transactional
   public boolean removeFromCart(String userEmail, int productId) {
-    return userCartRepository.deleteByUserEmailAndAndProductId(userEmail,productId);
+    userCartRepository.deleteByUserEmailAndAndProductId(userEmail, productId);
+    return true;
   }
 }
